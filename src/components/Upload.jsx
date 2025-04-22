@@ -33,11 +33,7 @@ const Upload = () => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // ✅ Optional check for filename
-    if (file.name !== "10958-1745302119.3701order_info.csv") {
-      alert("Invalid file! Please upload valid file");
-      return;
-    }
+   
 
     Papa.parse(file, {
       header: true,

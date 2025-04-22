@@ -60,7 +60,7 @@ const handleDownload = (inventoryAction) => {
     const rowsToExport = [];
   
     csvData.forEach((row) => {
-      const [style, ...rest] = row.sku.split("-");
+      const [style, ...rest] = row?.sku.split("-");
       const suffix = rest.join("-");
   
       // Check if the style is in sets

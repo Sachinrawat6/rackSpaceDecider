@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+.notify{
+    animation: animate 3s ease-in forwards;
+}
+@keyframes animate{
+    0%{
+    opacity: 1;
+    
+     
+    }
+    100%{
+        opacity: 0;
+    }
+}

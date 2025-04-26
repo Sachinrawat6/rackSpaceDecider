@@ -229,7 +229,7 @@ const handleDownload = (inventoryAction) => {
                   <td className="py-2 border border-gray-100">{row.sku}</td>
                   <td className="py-2 border border-gray-100">ADD</td>
                   <td className="py-2 border border-gray-100"></td>
-                  <td className="py-2 border border-gray-100">1</td>
+                  <td className="py-2 border border-gray-100"> {row.sku.startsWith(30)?5:2} </td>
                   <td className="py-2 border border-gray-100">
                     {match?.rackSpace || "Default"}
                   </td>

@@ -13,7 +13,7 @@ const Upload = () => {
   const [name, setName] = useState("");
   const [products, setProducts] = useState([]);
 
-  const API_URI = "https://sachinrawat6.github.io/api/";
+  const API_URI = "https://inventorybackend-m1z8.onrender.com/api/product";
   const fetchProducts = async () => {
     try {
       const res = await fetch(API_URI);
@@ -70,28 +70,28 @@ const handleDownload = (inventoryAction) => {
         // Replace with two SKUs
         [matchSet.style1, matchSet.style2].forEach((newStyle) => {
           const fullSku = `${newStyle}-${suffix}`;
-          const matchedProduct = products.find((p) => p.style == newStyle);
+          const matchedProduct = products.find((p) => p.style_code == newStyle);
           rowsToExport.push({
             DropshipWarehouseId: "22784",
             "Item SkuCode": fullSku,
             InventoryAction: inventoryAction,
             QtyIncludesBlocked: "",
             Qty: inventoryAction === "ADD" ? "5" : "0",
-            RackSpace: matchedProduct?.rackSpace || "Default",
+            RackSpace: matchedProduct?.rack_space || "Default",
             "Last Purchase Price": "",
             Notes: "",
           });
         });
       } else {
         // Normal product
-        const matched = products.find((p) => p.style == style);
+        const matched = products.find((p) => p.style_code == style);
         rowsToExport.push({
           DropshipWarehouseId: "22784",
           "Item SkuCode": row.sku,
           InventoryAction: inventoryAction,
           QtyIncludesBlocked: "",
           Qty: inventoryAction === "ADD" ? "2" : "0",
-          RackSpace: matched?.rackSpace || "Default",
+          RackSpace: matched?.rack_space || "Default",
           "Last Purchase Price": "",
           Notes: "",
         });
@@ -221,7 +221,7 @@ const handleDownload = (inventoryAction) => {
           <tbody>
             {csvData.map((row, index) => {
               const styleNumber = row.sku.split("-")[0];
-              const match = products.find((p) => p.style == styleNumber);
+              const match = products.find((p) => p.style_code == styleNumber);
 
               return (
                 <tr key={index} className="border border-gray-200 text-center">
@@ -231,7 +231,7 @@ const handleDownload = (inventoryAction) => {
                   <td className="py-2 border border-gray-100"></td>
                   <td className="py-2 border border-gray-100"> {row.sku.startsWith(30)?5:2} </td>
                   <td className="py-2 border border-gray-100">
-                    {match?.rackSpace || "Default"}
+                    {match?.rack_space || "Default"}
                   </td>
                   <td className="py-2 border border-gray-100"></td>
                   <td className="py-2 border border-gray-100"></td>

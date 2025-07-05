@@ -76,8 +76,9 @@ const handleDownload = (inventoryAction) => {
             "Item SkuCode": fullSku,
             InventoryAction: inventoryAction,
             QtyIncludesBlocked: "",
-            Qty: inventoryAction === "ADD" ? "5" : "0",
-            RackSpace: matchedProduct?.rack_space || "Default",
+            Qty: inventoryAction === "ADD" ? "2" : "0",
+            // RackSpace: matchedProduct?.rack_space || "Default",
+            RackSpace:"Virtual",
             "Last Purchase Price": "",
             Notes: "",
           });
@@ -91,7 +92,8 @@ const handleDownload = (inventoryAction) => {
           InventoryAction: inventoryAction,
           QtyIncludesBlocked: "",
           Qty: inventoryAction === "ADD" ? "2" : "0",
-          RackSpace: matched?.rack_space || "Default",
+          // RackSpace: matched?.rack_space || "Default",
+          RackSpace:"Virtual",
           "Last Purchase Price": "",
           Notes: "",
         });
@@ -122,7 +124,7 @@ const handleDownload = (inventoryAction) => {
 
 
 
-  const names = ["Tanishq", "Kajal", "Alok", "Tushar"];
+  const names = ["Tanishq", "Kajal2", "Alok", "Tushar","Ganesh"];
 
   return (
     <>
@@ -220,7 +222,7 @@ const handleDownload = (inventoryAction) => {
           </thead>
           <tbody>
             {csvData.map((row, index) => {
-              const styleNumber = row.sku.split("-")[0];
+              const styleNumber = row?.sku?.split("-")[0];
               const match = products.find((p) => p.style_code == styleNumber);
 
               return (
@@ -229,9 +231,9 @@ const handleDownload = (inventoryAction) => {
                   <td className="py-2 border border-gray-100">{row.sku}</td>
                   <td className="py-2 border border-gray-100">ADD</td>
                   <td className="py-2 border border-gray-100"></td>
-                  <td className="py-2 border border-gray-100"> {row.sku.startsWith(30)?5:2} </td>
+                  <td className="py-2 border border-gray-100"> 2 </td>
                   <td className="py-2 border border-gray-100">
-                    {match?.rack_space || "Default"}
+                    Virtual
                   </td>
                   <td className="py-2 border border-gray-100"></td>
                   <td className="py-2 border border-gray-100"></td>
